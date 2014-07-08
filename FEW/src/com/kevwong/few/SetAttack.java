@@ -27,20 +27,19 @@ public class SetAttack extends Fragment {
 			}
 		});
 
+		buttonEarth.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				ViewPagerActivity.earthFragment();
+			}
+		});
 		
 		buttonWater.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
 				ViewPagerActivity.waterFragment();
-			}
-		});
-
-		buttonEarth.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				ViewPagerActivity.earthFragment();
 			}
 		});
 		

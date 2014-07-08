@@ -36,15 +36,15 @@ public class ViewPagerActivity extends FragmentActivity {
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
         mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(bar.newTab().setText("1"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("2"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("3"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("4"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("5"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("6"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("7"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("8"), SetAttack.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("9"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("1st"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("2nd"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("3rd"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("4th"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("5th"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("6th"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("7th"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("8th"), SetAttack.class, null);
+        mTabsAdapter.addTab(bar.newTab().setText("9th"), SetAttack.class, null);
         mTabsAdapter.addTab(bar.newTab().setText("Attack"), StartAttack.class, null);
         
         if (savedInstanceState != null) {
@@ -151,29 +151,32 @@ public class ViewPagerActivity extends FragmentActivity {
 
 	}
 	
-	void switchFragment(int target){
+	/*void switchFragment(int target){
     	mViewPager.setCurrentItem(target);
-    }
+    }*/
     
     public static void fireFragment(){
     	int current = mViewPager.getCurrentItem();
     	int next = current + 1;
+    	int element = 0;
     	mViewPager.setCurrentItem(next);
-    	setAttack(current, 0);
+    	setAttack(current, element);
     }
     
     public static void earthFragment(){
     	int current = mViewPager.getCurrentItem();
     	int next = current + 1;
+    	int element = 1;
     	mViewPager.setCurrentItem(next);
-    	setAttack(current, 1);
+    	setAttack(current, element);
     }
     
     public static void waterFragment(){
     	int current = mViewPager.getCurrentItem();
     	int next = current + 1;
+    	int element = 2;
     	mViewPager.setCurrentItem(next);
-    	setAttack(current, 2);
+    	setAttack(current, element);
     }
     
     public static void setAttack(int theCurrent, int element){
