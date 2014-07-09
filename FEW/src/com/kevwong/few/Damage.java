@@ -10,6 +10,22 @@ public class Damage {
 		int streakDamage = 3;
 		int lastValue = attackResult[0];
 		int currentLength = 1;
+		int[] p1Attack = p1.getAttack();
+		
+		boolean p1Healing = false;
+		boolean p1Raging = false;
+		
+		if((p1Attack[0] == 2) && (p1Attack[1] == 2) && (p1Attack[2] == 2)){
+			
+			p1Healing = true;
+			
+		}
+		
+		if((p1Attack[0] == 0) && (p1Attack[1] == 0) && (p1Attack[2] == 0)){
+			
+			p1Raging = true;
+			
+		}
 		
 		for(int i = 0; i <= attackResult.length-1; i++) {
 		
@@ -42,29 +58,66 @@ public class Damage {
 			
 			if(attackResult[i] == 1) {
 				
-				// Player 1 wins
-				int finalDamage = basicDamage + p1BonusDamage;
+				if(p1Healing){
+					
+					p1.setHealth(p1.getHealth() + 10);
+					
+					System.out.println(Integer.toString(p1.getHealth()));
+					
+				} else if(p1Raging) {
+					
+					// Player 1 wins
+					int finalDamage = (basicDamage + p1BonusDamage)*2;
+					
+					p2.setHealth(p2.getHealth() - finalDamage);
+					
+					Log.d("p1 does " + finalDamage + " Rage Damage ", "p2 Health = " + Integer.toString(p2.getHealth()));
+					
+					// Check p2 health
+					if(p2.getHealth() <= 0) {
+						Log.d("DEAD","Player 2 DEAD");
+						break;
+					}
 				
-				p2.setHealth(p2.getHealth() - finalDamage);
+					System.out.println("RAGING");
 				
-				Log.d("p1 does " + finalDamage + " Damage ", "p2 Health = " + Integer.toString(p2.getHealth()));
+				} else {
+					
+					// Player 1 wins
+					int finalDamage = basicDamage + p1BonusDamage;
+					
+					p2.setHealth(p2.getHealth() - finalDamage);
+					
+					Log.d("p1 does " + finalDamage + " Damage ", "p2 Health = " + Integer.toString(p2.getHealth()));
+					
+					// Check p2 health
+					if(p2.getHealth() <= 0) {
+						Log.d("DEAD","Player 2 DEAD");
+						break;
+					}
 				
-				// Check health
-				if(p2.getHealth() <= 0) {
-					Log.d("DEAD","Player 2 DEAD");
-					break;
 				}
 				
 			} else if(attackResult[i] == 2) {
 				
+				int finalDamage;
+				
 				// Player 2 wins
-				int finalDamage = basicDamage + p2BonusDamage;
+				if(p1Raging) {
+					finalDamage = (basicDamage + p2BonusDamage)*2;
+				} else {
+					finalDamage = basicDamage + p2BonusDamage;
+				}
 				
 				p1.setHealth(p1.getHealth() - finalDamage);
 				
-				Log.d("p2 does " + finalDamage + " Damage ", "p1 Health = " + Integer.toString(p1.getHealth()));
+				if(p1Raging) {
+					Log.d("p2 does " + finalDamage + " Double Damage ", "p1 Health = " + Integer.toString(p1.getHealth()));
+				} else {
+					Log.d("p2 does " + finalDamage + " Damage ", "p1 Health = " + Integer.toString(p1.getHealth()));
+				}
 				
-				// Check health
+				// Check p1 health
 				if(p1.getHealth() <= 0) {
 					Log.d("DEAD","Player 1 DEAD");
 					break;
