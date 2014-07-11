@@ -15,13 +15,13 @@ public class Damage {
 		boolean p1Healing = false;
 		boolean p1Raging = false;
 		
-		if((p1Attack[0] == 2) && (p1Attack[1] == 2) && (p1Attack[2] == 2)){
+		if((p1Attack[0] == 2) && (p1Attack[1] == 2)){
 			
 			p1Healing = true;
 			
 		}
 		
-		if((p1Attack[0] == 0) && (p1Attack[1] == 0) && (p1Attack[2] == 0)){
+		if((p1Attack[0] == 0) && (p1Attack[1] == 0)){
 			
 			p1Raging = true;
 			

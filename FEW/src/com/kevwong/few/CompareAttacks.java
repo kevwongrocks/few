@@ -7,7 +7,7 @@ public class CompareAttacks {
 		int p1 = 0;
 		int p2 = 0;
 		int tie = 0;
-		int[] attackCheck = new int[9];
+		int[] attackCheck = new int[5];
 		
 		for(int i = 0; i <= attackCheck.length-1; i++) {
 			

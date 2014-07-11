@@ -2,14 +2,14 @@ package com.kevwong.few;
 
 public class MatchCount {
 
-	private static int match2;
+	private static int match;
 	
-	public static void setMatch(int match) {
-		match2 = match;
+	public static void setMatch(int m) {
+		match = m;
 	}
 	
 	public static int getMatch() {
-		return match2;
+		return match;
 	}
 	
 }
