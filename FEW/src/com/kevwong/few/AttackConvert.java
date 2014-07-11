@@ -1,15 +1,16 @@
 package com.kevwong.few;
 
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
 public class AttackConvert {
 
-	public static void main(int[] attack, View v, Object[] p) {
+	public static void main(int[] attack, View v, Object[] p, boolean slow) {
 		
 		for(int i = 0; i <= attack.length-1; i++){
-				
+			
 			if(attack[i] == 0) {
 				
 				Drawable d = v.getResources().getDrawable(R.drawable.sbtn_fire);

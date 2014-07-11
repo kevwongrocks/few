@@ -5,6 +5,7 @@ public class Avatar {
 	String name;
 	String element;
 	int health;
+	int armour;
 	int[] attack;
 	
 	public String getName() {
@@ -24,6 +25,12 @@ public class Avatar {
 	}
 	public void setHealth(int health) {
 		this.health = health;
+	}
+	public int getArmour() {
+		return armour;
+	}
+	public void setArmour(int armour) {
+		this.armour = armour;
 	}
 	public int[] getAttack() {
 		return attack;

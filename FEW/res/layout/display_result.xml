@@ -8,11 +8,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clipChildren="false"
-        android:orientation="vertical"
-        android:splitMotionEvents="false" >
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/enemy_seq"
+            android:id="@+id/p2_seq"
             android:layout_width="fill_parent"
             android:layout_height="37dp"
             android:gravity="center"
@@ -60,7 +59,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/enemy_stats"
+            android:id="@+id/p2_stats"
             android:layout_width="fill_parent"
             android:layout_height="74dp"
             android:orientation="horizontal" >
@@ -80,7 +79,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/enemy_health"
+                    android:id="@+id/p2_health"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#100"
@@ -102,7 +101,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/enemy_armor"
+                    android:id="@+id/p2_armour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
@@ -114,7 +113,8 @@
             android:id="@+id/player_avatar"
             android:layout_width="fill_parent"
             android:layout_height="370dp"
-            android:orientation="horizontal" >
+            android:gravity="center"
+            android:orientation="vertical" >
 
             <Button
                 android:id="@+id/nextRound"
@@ -160,7 +160,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/player_health"
+                    android:id="@+id/p1_health"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="#100"
@@ -182,7 +182,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/player_armor"
+                    android:id="@+id/p1_armour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
@@ -191,7 +191,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/player_seq"
+            android:id="@+id/p1_seq"
             android:layout_width="fill_parent"
             android:layout_height="37dp"
             android:gravity="center"
@@ -237,6 +237,42 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/sbtn_null" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="111dp">
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="370dp">
+            
+            <LinearLayout
+                android:id="@+id/p2_damage"
+                android:layout_width="0dp"
+            	android:layout_height="fill_parent"
+            	android:layout_weight="1"
+            	android:orientation="horizontal">
+                
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/p1_damage"
+                android:layout_width="0dp"
+            	android:layout_height="fill_parent"
+            	android:layout_weight="1"
+            	android:orientation="horizontal">
+                
+            </LinearLayout>
+            
+        </LinearLayout>
+        
     </LinearLayout>
 
 </FrameLayout>

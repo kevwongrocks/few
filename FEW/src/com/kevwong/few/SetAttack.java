@@ -31,8 +31,11 @@ public class SetAttack extends Fragment {
 		Button buttonEarth = (Button) setAttackView.findViewById(R.id.buttonEarth);
 		Button buttonWater = (Button) setAttackView.findViewById(R.id.buttonWater);
 		
-		TextView p1Health = (TextView) setAttackView.findViewById(R.id.player_health);
-		TextView p2Health = (TextView) setAttackView.findViewById(R.id.enemy_health);
+		TextView p1Health = (TextView) setAttackView.findViewById(R.id.p1_health);
+		TextView p2Health = (TextView) setAttackView.findViewById(R.id.p2_health);
+		
+		TextView p1Armour = (TextView) setAttackView.findViewById(R.id.p1_armour);
+		TextView p2Armour = (TextView) setAttackView.findViewById(R.id.p2_armour);
 		
 		Avatar p1 = new Avatar();
 		Avatar p2 = new Avatar();
@@ -40,13 +43,20 @@ public class SetAttack extends Fragment {
 		if(MatchCount.getMatch() == 0) {
 			p1.setHealth(100);
 			p2.setHealth(100);
+			p1.setArmour(100);
+			p2.setArmour(100);
 		} else {
-			p1.setHealth(PlayerHealth.p1get());
-			p2.setHealth(PlayerHealth.p2get());
+			p1.setHealth(PlayerStats.p1getHealth());
+			p2.setHealth(PlayerStats.p2getHealth());
+			p1.setArmour(PlayerStats.p1getArmour());
+			p2.setArmour(PlayerStats.p2getArmour());
 		}
 		
 		p1Health.setText(Integer.toString(p1.getHealth()));
 		p2Health.setText(Integer.toString(p2.getHealth()));
+		
+		p1Armour.setText(Integer.toString(p1.getArmour()));
+		p2Armour.setText(Integer.toString(p2.getArmour()));
 		
 		mButton(buttonFire, 0, setAttackView);
 		mButton(buttonEarth, 1, setAttackView);

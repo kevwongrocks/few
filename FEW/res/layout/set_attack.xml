@@ -82,7 +82,7 @@
                 android:text="HEALTH" />
             
             <TextView
-                android:id="@+id/enemy_health"
+                android:id="@+id/p2_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -105,7 +105,7 @@
                 android:text="ARMOR" />
             
             <TextView
-                android:id="@+id/enemy_armor"
+                android:id="@+id/p2_armour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -142,7 +142,7 @@
                 android:text="HEALTH" />
             
             <TextView
-                android:id="@+id/player_health"
+                android:id="@+id/p1_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -165,7 +165,7 @@
                 android:text="ARMOR" />
             
             <TextView
-                android:id="@+id/player_armor"
+                android:id="@+id/p1_armour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
