@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -81,12 +82,15 @@ public class DisplayResult extends Activity {
 			Log.d("Compare Attack", Arrays.toString(winResult));
 			Log.d("", newLine+"======== DAMAGE ===========");
 			
-			// Do Attack Damage and Bonus Streak Damage
-			Damage.main(winResult, p1, p2);
+			// Damage and Bonus Streak ===============================================
+			ViewGroup disResults = (ViewGroup) findViewById(R.id.top_frame);
+			Damage.main(winResult, p1, p2, disResults);
 			
+			
+			
+			// SetText for Health and Armour =========================================
 			p1Health.setText(Integer.toString(p1.getHealth()));
 			p2Health.setText(Integer.toString(p2.getHealth()));
-			
 			p1Armour.setText(Integer.toString(p1.getArmour()));
 			p2Armour.setText(Integer.toString(p2.getArmour()));
 			

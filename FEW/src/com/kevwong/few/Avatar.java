@@ -1,5 +1,7 @@
 package com.kevwong.few;
 
+import android.view.View;
+
 public class Avatar {
 	
 	String name;
