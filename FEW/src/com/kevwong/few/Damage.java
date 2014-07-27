@@ -1,6 +1,8 @@
 package com.kevwong.few;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
@@ -20,10 +22,8 @@ import android.widget.TextView;
 
 public class Damage {
 	
-	public static void main(int[] attackResult, Avatar p1, Avatar p2, ViewGroup v) {
+	public static void main(int[] attackResult, Avatar p1, Avatar p2, ViewGroup theLayout) {
 		
-		ViewGroup theLayout = v;
-	
 		int basicDamage = 10;
 		int streakDamage = 3;
 		int lastValue = attackResult[0];
@@ -111,7 +111,7 @@ public class Damage {
 						}
 					}
 					
-					animateStatus(theLayout, finalDamage, 1, 0);
+					animateStatus(theLayout, finalDamage, 1, 2);
 					
 					p2.setHealth(p2.getHealth() - finalDamage);
 					
@@ -167,7 +167,7 @@ public class Damage {
 					p2.setHealth(p2.getHealth() + 10);
 					System.out.println("Healing: p2 recovers Health : " + p2.getHealth());
 					
-					animateStatus(theLayout, 10, 1, 1);
+					animateStatus(theLayout, 10, 2, 1);
 				} 
 				if(p2Raging) {
 					// Rage Attack
@@ -185,7 +185,7 @@ public class Damage {
 						finalDamage = (basicDamage + p2BonusDamage) * 2;
 					}
 					
-					animateStatus(theLayout, finalDamage, 2, 0);
+					animateStatus(theLayout, finalDamage, 2, 2);
 					
 					p1.setHealth(p1.getHealth() - finalDamage);
 					
@@ -240,40 +240,49 @@ public class Damage {
 		
 	}
 	
-	public static void animateStatus(ViewGroup v, int damage, int player, int healing) {
+	public static void animateStatus(ViewGroup v, int damage, int player, int special) {
 		
 		ViewGroup p1Results = (ViewGroup) v.findViewById(R.id.p1_results_area);
 		ViewGroup p2Results = (ViewGroup) v.findViewById(R.id.p2_results_area);
 		
-		final TextView myText= new TextView(v.getContext());
+		final TextView textFly= new TextView(v.getContext());
 		
-		if(healing != 1) {
-			myText.setText(Integer.toString(damage)+ " Damage");
-			myText.setTextSize(18.0f);
-			myText.setTypeface(null, Typeface.BOLD);
-			myText.setTextColor(Color.parseColor("#FF4D4D"));
-			myText.setGravity(Gravity.CENTER | Gravity.BOTTOM);
-			myText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		} else {
-			myText.setText("Heal "+Integer.toString(damage)+ " Life");
-			myText.setTextSize(18.0f);
-			myText.setTypeface(null, Typeface.BOLD);
-			myText.setTextColor(Color.parseColor("#73DCFF"));
-			myText.setGravity(Gravity.CENTER | Gravity.BOTTOM);
-			myText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		if(special == 0) {
+			textFly.setText(Integer.toString(damage) + " Damage");
+			textFly.setTextSize(18.0f);
+			textFly.setTypeface(null, Typeface.BOLD);
+			textFly.setTextColor(Color.parseColor("#FF4D4D"));
+			textFly.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+			textFly.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		} else if(special == 1) {
+			textFly.setText(Integer.toString(damage) + " Life");
+			textFly.setTextSize(18.0f);
+			textFly.setTypeface(null, Typeface.BOLD);
+			textFly.setTextColor(Color.parseColor("#73DCFF"));
+			textFly.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+			textFly.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		} else if(special == 2) {
+			textFly.setText(Integer.toString(damage) + " Rage");
+			textFly.setTextSize(18.0f);
+			textFly.setTypeface(null, Typeface.BOLD);
+			textFly.setTextColor(Color.parseColor("#FF4D4D"));
+			textFly.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+			textFly.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		}
 		
-		if(healing != 1) {
+		if(special != 1) {
+			// show damage
 		    if(player == 1){
-		    	p2Results.addView(myText);
+		    	p2Results.addView(textFly);
 		    } else if(player == 2) {
-		    	p1Results.addView(myText);
+		    	p1Results.addView(textFly);
 		    }
 		} else {
+			// show healing
 			if(player == 1){
-		    	p1Results.addView(myText);
+		    	p1Results.addView(textFly);
 		    } else if(player == 2) {
-		    	p2Results.addView(myText);
+		    	p2Results.addView(textFly);
 		    }
 		}
 	    
@@ -299,7 +308,7 @@ public class Damage {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				// TODO Auto-generated method stub
-				myText.setAlpha(0);
+				textFly.setAlpha(0);
 			}
 
 			@Override
@@ -314,7 +323,7 @@ public class Damage {
 		setAnimation.addAnimation(translateAnimation);
 	    setAnimation.addAnimation(alphaAnimationReverse);
 	    
-		setupAnimation(myText, setAnimation);
+		setupAnimation(textFly, setAnimation);
 		
 	}
 	private static void setupAnimation(View v, final Animation animation) {
