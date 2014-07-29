@@ -110,37 +110,24 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/enemy_avatar"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="185dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_height="370dp">
             
-            	<ImageView
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
-            	    android:layout_gravity="center"
-            	    android:background="@drawable/avatar_p2" />
-            
-            </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/player_avatar"
-            android:layout_width="fill_parent"
-            android:layout_height="185dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            	
             <ImageView
+           	    android:id="@+id/p2_avatar"
            	    android:layout_width="wrap_content"
            	    android:layout_height="wrap_content"
-           	    android:layout_gravity="center"
+           	    android:background="@drawable/avatar_p2" />	
+            
+            <ImageView
+                android:id="@+id/p1_avatar"
+           	    android:layout_width="130dp"
+           	    android:layout_height="130dp"
+           	    android:layout_centerHorizontal="true"
            	    android:background="@drawable/avatar_p1" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/player_stats"

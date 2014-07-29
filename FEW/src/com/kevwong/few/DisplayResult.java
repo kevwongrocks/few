@@ -2,6 +2,11 @@ package com.kevwong.few;
 
 import java.util.Arrays;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
+import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -68,6 +73,8 @@ public class DisplayResult extends Activity {
 			TextView p1Armour = (TextView) findViewById(R.id.p1_armour);
 			TextView p2Armour = (TextView) findViewById(R.id.p2_armour);
 			TextView status = (TextView) findViewById(R.id.status);
+			ImageView p1Avatar = (ImageView) findViewById(R.id.p1_avatar);
+			ImageView p2Avatar = (ImageView) findViewById(R.id.p2_avatar);
 			Button restart = (Button) findViewById(R.id.restart);
 			
 			// Status
@@ -86,6 +93,34 @@ public class DisplayResult extends Activity {
 			ViewGroup disResults = (ViewGroup) findViewById(R.id.top_frame);
 			Damage.main(winResult, p1, p2, disResults);
 			
+			//p1Avatar.setTranslationX(100);
+			//p1Avatar.setTranslationY(400);
+			
+			// Animate Attacks =======================================================
+			/* 
+			 * take the winResult array and for each match animate the action
+			*/ 
+			
+			for(int i = 0; i < winResult.length; i++) {
+				if(winResult[i] == 0) {
+				
+					mShake(p1Avatar, 100, i * 1000);
+					mShake(p2Avatar, 100, i * 1000);
+
+				} else if(winResult[i] == 1) {
+				
+					// P1 wins
+					//mMove(p1Avatar, p2Avatar, 1000);
+					
+					mShake(p2Avatar, 100, i * 1000);
+
+				} else if(winResult[i] == 2) {
+ 
+					// P2 wins
+					mShake(p1Avatar, 100, i * 1000);
+					
+				}
+			}
 			
 			
 			// SetText for Health and Armour =========================================
@@ -155,6 +190,74 @@ public class DisplayResult extends Activity {
 			
 		}
 		
+	}
+	
+	public void mShake(View v, int duration, int offset) {
+		
+		PropertyValuesHolder trans = PropertyValuesHolder.ofFloat(v.ROTATION, 30);
+		
+		ObjectAnimator moveObj = ObjectAnimator.ofPropertyValuesHolder(v, trans);
+		moveObj.setStartDelay(offset);
+		moveObj.setRepeatCount(3);
+		moveObj.setDuration(duration);
+		moveObj.setRepeatMode(ValueAnimator.REVERSE);
+		moveObj.addListener(new AnimatorListener() {
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                
+            }
+        });
+		moveObj.start();
+	}
+	
+	public void mMove (View winner, View loser, int duration) {
+		
+		PropertyValuesHolder transX = PropertyValuesHolder.ofFloat(winner.X, winner.getX());
+		PropertyValuesHolder transY = PropertyValuesHolder.ofFloat(winner.Y, 500);
+		
+		ObjectAnimator moveObj = ObjectAnimator.ofPropertyValuesHolder(winner, transX, transY);
+		moveObj.setRepeatCount(1);
+		moveObj.setDuration(duration);
+		moveObj.setRepeatMode(ValueAnimator.REVERSE);
+		moveObj.addListener(new AnimatorListener() {
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                
+            }
+        });
+		moveObj.start();
 	}
 	
 }

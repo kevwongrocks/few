@@ -1,5 +1,10 @@
 package com.kevwong.few;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.view.View;
 
 public class Avatar {
@@ -40,5 +45,4 @@ public class Avatar {
 	public void setAttack(int[] attack) {
 		this.attack = attack;
 	}
-	
 }

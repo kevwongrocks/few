@@ -13,21 +13,45 @@ public class AttackConvert {
 			
 			if(attack[i] == 0) {
 				
-				Drawable d = v.getResources().getDrawable(R.drawable.sbtn_fire);
-				ImageView image = (ImageView) v.findViewById((Integer) p[i]);
-				image.setImageDrawable(d);
+				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_fire);
+				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
+				if(slow) {
+					image.postDelayed(new Runnable() {
+				        public void run() {
+				        	image.setImageDrawable(d);
+				        }
+				    }, i * 1000);
+				} else {
+					image.setImageDrawable(d);
+				}
 				
 			} else if(attack[i] == 1) {
 				
-				Drawable d = v.getResources().getDrawable(R.drawable.sbtn_earth);
-				ImageView image = (ImageView) v.findViewById((Integer) p[i]);
-				image.setImageDrawable(d);
+				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_earth);
+				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
+				if(slow) {
+					image.postDelayed(new Runnable() {
+				        public void run() {
+				        	image.setImageDrawable(d);
+				        }
+				    }, i * 1000);
+				} else {
+					image.setImageDrawable(d);
+				}
 				
 			} else if(attack[i] == 2) {
 				
-				Drawable d = v.getResources().getDrawable(R.drawable.sbtn_water);
-				ImageView image = (ImageView) v.findViewById((Integer) p[i]);
-				image.setImageDrawable(d);
+				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_water);
+				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
+				if(slow) {
+					image.postDelayed(new Runnable() {
+				        public void run() {
+				        	image.setImageDrawable(d);
+				        }
+				    }, i * 1000);
+				} else {
+					image.setImageDrawable(d);
+				}
 				
 			}
 			
