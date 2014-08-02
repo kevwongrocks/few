@@ -110,13 +110,15 @@ public class DisplayResult extends Activity {
 				} else if(winResult[i] == 1) {
 				
 					// P1 wins
-					//mMove(p1Avatar, p2Avatar, 1000);
+					mMove(p1Avatar, p2Avatar, 200, i * 1000);
 					
 					mShake(p2Avatar, 100, i * 1000);
 
 				} else if(winResult[i] == 2) {
  
 					// P2 wins
+					mMove(p2Avatar, p1Avatar, 200, i * 1000);
+					
 					mShake(p1Avatar, 100, i * 1000);
 					
 				}
@@ -226,12 +228,21 @@ public class DisplayResult extends Activity {
 		moveObj.start();
 	}
 	
-	public void mMove (View winner, View loser, int duration) {
+	public void mMove (View winner, View loser, int duration, int offset) {
 		
-		PropertyValuesHolder transX = PropertyValuesHolder.ofFloat(winner.X, winner.getX());
-		PropertyValuesHolder transY = PropertyValuesHolder.ofFloat(winner.Y, 500);
+		Log.d("Winner X", ""+winner.getX());
+		Log.d("Winner Y", ""+winner.getY());
+		
+		Log.d("Loser X", ""+loser.getX());
+		Log.d("Loser Y", ""+loser.getY());
+		
+		winner.bringToFront();
+		
+		PropertyValuesHolder transX = PropertyValuesHolder.ofFloat(winner.X, loser.getX());
+		PropertyValuesHolder transY = PropertyValuesHolder.ofFloat(winner.Y, loser.getY());
 		
 		ObjectAnimator moveObj = ObjectAnimator.ofPropertyValuesHolder(winner, transX, transY);
+		moveObj.setStartDelay(offset);
 		moveObj.setRepeatCount(1);
 		moveObj.setDuration(duration);
 		moveObj.setRepeatMode(ValueAnimator.REVERSE);
