@@ -61,7 +61,7 @@ public class DisplayResult extends Activity {
 			Object[] p1Position = {R.id.ps1, R.id.ps2, R.id.ps3, R.id.ps4, R.id.ps5};
 			Object[] p2Position = {R.id.es1, R.id.es2, R.id.es3, R.id.es4, R.id.es5};
 			
-			AttackConvert.main(p1.getAttack(), p1Seq, p1Position, false);
+			AttackConvert.main(p1.getAttack(), p1Seq, p1Position, true);
 			AttackConvert.main(p2.getAttack(), p2Seq, p2Position, true);
 			
 			// Check Attack Sequence match Winner
@@ -89,21 +89,23 @@ public class DisplayResult extends Activity {
 			Log.d("Compare Attack", Arrays.toString(winResult));
 			Log.d("", newLine+"======== DAMAGE ===========");
 			
+			
+			
 			// Damage and Bonus Streak ===============================================
 			ViewGroup disResults = (ViewGroup) findViewById(R.id.top_frame);
 			Damage.main(winResult, p1, p2, disResults);
 			
-			//p1Avatar.setTranslationX(100);
-			//p1Avatar.setTranslationY(400);
+			
 			
 			// Animate Attacks =======================================================
 			/* 
-			 * take the winResult array and for each match animate the action
+			 * take winResult array and animate each match
 			*/ 
 			
 			for(int i = 0; i < winResult.length; i++) {
 				if(winResult[i] == 0) {
 				
+					// Tie
 					mShake(p1Avatar, 100, i * 1000);
 					mShake(p2Avatar, 100, i * 1000);
 
@@ -111,14 +113,12 @@ public class DisplayResult extends Activity {
 				
 					// P1 wins
 					mMove(p1Avatar, p2Avatar, 200, i * 1000);
-					
 					mShake(p2Avatar, 100, i * 1000);
 
 				} else if(winResult[i] == 2) {
  
 					// P2 wins
 					mMove(p2Avatar, p1Avatar, 200, i * 1000);
-					
 					mShake(p1Avatar, 100, i * 1000);
 					
 				}
@@ -199,7 +199,7 @@ public class DisplayResult extends Activity {
 		PropertyValuesHolder trans = PropertyValuesHolder.ofFloat(v.ROTATION, 30);
 		
 		ObjectAnimator moveObj = ObjectAnimator.ofPropertyValuesHolder(v, trans);
-		moveObj.setStartDelay(offset);
+		moveObj.setStartDelay(offset+500);
 		moveObj.setRepeatCount(3);
 		moveObj.setDuration(duration);
 		moveObj.setRepeatMode(ValueAnimator.REVERSE);
@@ -242,7 +242,7 @@ public class DisplayResult extends Activity {
 		PropertyValuesHolder transY = PropertyValuesHolder.ofFloat(winner.Y, loser.getY());
 		
 		ObjectAnimator moveObj = ObjectAnimator.ofPropertyValuesHolder(winner, transX, transY);
-		moveObj.setStartDelay(offset);
+		moveObj.setStartDelay(offset+500);
 		moveObj.setRepeatCount(1);
 		moveObj.setDuration(duration);
 		moveObj.setRepeatMode(ValueAnimator.REVERSE);

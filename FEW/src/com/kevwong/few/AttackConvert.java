@@ -16,11 +16,14 @@ public class AttackConvert {
 				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_fire);
 				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
 				if(slow) {
+					
+					// Create a Delay for View to Appear
+					
 					image.postDelayed(new Runnable() {
 				        public void run() {
 				        	image.setImageDrawable(d);
 				        }
-				    }, i * 1000);
+				    }, i * 1000+500);
 				} else {
 					image.setImageDrawable(d);
 				}
@@ -30,11 +33,14 @@ public class AttackConvert {
 				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_earth);
 				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
 				if(slow) {
+					
+					// Create a Delay for View to Appear
+					
 					image.postDelayed(new Runnable() {
 				        public void run() {
 				        	image.setImageDrawable(d);
 				        }
-				    }, i * 1000);
+				    }, i * 1000+500);
 				} else {
 					image.setImageDrawable(d);
 				}
@@ -44,11 +50,14 @@ public class AttackConvert {
 				final Drawable d = v.getResources().getDrawable(R.drawable.sbtn_water);
 				final ImageView image = (ImageView) v.findViewById((Integer) p[i]);
 				if(slow) {
+					
+					// Create a Delay for View to Appear
+					
 					image.postDelayed(new Runnable() {
 				        public void run() {
 				        	image.setImageDrawable(d);
 				        }
-				    }, i * 1000);
+				    }, i * 1000+500);
 				} else {
 					image.setImageDrawable(d);
 				}

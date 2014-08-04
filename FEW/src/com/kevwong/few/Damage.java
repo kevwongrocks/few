@@ -92,10 +92,10 @@ public class Damage {
 				// Player 1 wins ===============================================================
 				if(p1Healing) {
 					// Healing
-					p1.setHealth(p1.getHealth() + 10);
+					p1.setHealth(p1.getHealth() + 15);
 					System.out.println("Healing: p1 recovers Health : "+p1.getHealth());
 					
-					animateStatus(theLayout, 10, 1, 1);
+					animateStatus(theLayout, 15, 1, 1, i * 1000);
 				} 
 				if(p1Raging) {
 					// Rage Attack
@@ -111,7 +111,7 @@ public class Damage {
 						}
 					}
 					
-					animateStatus(theLayout, finalDamage, 1, 2);
+					animateStatus(theLayout, finalDamage, 1, 2, i * 1000);
 					
 					p2.setHealth(p2.getHealth() - finalDamage);
 					
@@ -144,7 +144,7 @@ public class Damage {
 						finalDamage = basicDamage + p1BonusDamage;
 					}
 					
-					animateStatus(theLayout, finalDamage, 1, 0);
+					animateStatus(theLayout, finalDamage, 1, 0, i * 1000);
 					
 					// Reduce player Health
 					p2.setHealth(p2.getHealth() - finalDamage);
@@ -163,13 +163,15 @@ public class Damage {
 				
 				// Player 2 wins ===============================================================
 				if(p2Healing){
+					
 					// Healing
-					p2.setHealth(p2.getHealth() + 10);
+					p2.setHealth(p2.getHealth() + 15);
 					System.out.println("Healing: p2 recovers Health : " + p2.getHealth());
 					
-					animateStatus(theLayout, 10, 2, 1);
+					animateStatus(theLayout, 10, 2, 1, i * 1000);
 				} 
 				if(p2Raging) {
+					
 					// Rage Attack
 					int finalDamage;
 				
@@ -185,7 +187,7 @@ public class Damage {
 						finalDamage = (basicDamage + p2BonusDamage) * 2;
 					}
 					
-					animateStatus(theLayout, finalDamage, 2, 2);
+					animateStatus(theLayout, finalDamage, 2, 2, i * 1000);
 					
 					p1.setHealth(p1.getHealth() - finalDamage);
 					
@@ -215,7 +217,7 @@ public class Damage {
 						
 					}
 					
-					animateStatus(theLayout, finalDamage, 2, 0);
+					animateStatus(theLayout, finalDamage, 2, 0, i * 1000);
 					
 					p1.setHealth(p1.getHealth() - finalDamage);
 					
@@ -240,7 +242,7 @@ public class Damage {
 		
 	}
 	
-	public static void animateStatus(ViewGroup v, int damage, int player, int special) {
+	public static void animateStatus(ViewGroup v, int damage, int player, int special, int offset) {
 		
 		ViewGroup p1Results = (ViewGroup) v.findViewById(R.id.p1_results_area);
 		ViewGroup p2Results = (ViewGroup) v.findViewById(R.id.p2_results_area);
@@ -290,14 +292,37 @@ public class Damage {
 	    		Animation.ABSOLUTE, 0,
                 Animation.ABSOLUTE, 0,
                 Animation.ABSOLUTE, 0, 
-                Animation.ABSOLUTE, -250);
-        translateAnimation.setDuration(3000);
-        
-        final AlphaAnimation alphaAnimationReverse = new AlphaAnimation(1, 0);
-        alphaAnimationReverse.setInterpolator(new AccelerateInterpolator());
-        alphaAnimationReverse.setStartOffset(2000);
-        alphaAnimationReverse.setDuration(1000);
-        alphaAnimationReverse.setAnimationListener(new Animation.AnimationListener() {
+                Animation.ABSOLUTE, -150);
+	    translateAnimation.setStartOffset(offset+500);
+	    translateAnimation.setDuration(2000);
+	    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	    
+	    final AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+        alphaAnimation.setInterpolator(new AccelerateInterpolator());
+        alphaAnimation.setStartOffset(offset+500);
+        alphaAnimation.setRepeatCount(1);
+        alphaAnimation.setDuration(500);
+        alphaAnimation.setRepeatMode(ValueAnimator.REVERSE);
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
 
 			@Override
 			public void onAnimationStart(Animation animation) {
@@ -320,8 +345,8 @@ public class Damage {
         });
         
         final AnimationSet setAnimation = new AnimationSet(true);
-		setAnimation.addAnimation(translateAnimation);
-	    setAnimation.addAnimation(alphaAnimationReverse);
+        setAnimation.addAnimation(alphaAnimation);
+        setAnimation.addAnimation(translateAnimation);
 	    
 		setupAnimation(textFly, setAnimation);
 		
